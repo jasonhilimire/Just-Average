@@ -60,10 +60,14 @@ class ViewController: UIViewController {
     @IBOutlet var textBox: UITextField!
     
     @IBAction func removeLast(_ sender: UIButton) {
+        if valuesArray.count >= 1 {
         valuesArray.removeLast()
         calcAvg()
         avgLabel.text = "Average: \(calcAvg())"
-        valuesLabel.text = "\(valuesArray)"
+            valuesLabel.text = "\(valuesArray)"
+        } else {
+            // TODO: FIX the [] when removelast is pressed and array == 0
+        }
     }
     
     
@@ -78,8 +82,12 @@ class ViewController: UIViewController {
     func calcAvg() -> Int {
         let summedArr = valuesArray.reduce(0, {$0 + $1})
         let arrayCount = valuesArray.count
-        let averageArray = summedArr / arrayCount
-        return averageArray
+        if valuesArray.count == 0 {
+            return 0
+        } else {
+            let averageArray = summedArr / arrayCount
+            return averageArray
+        }
     }
     
     func resetAll() {
