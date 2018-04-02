@@ -79,7 +79,7 @@ class ViewController: UIViewController {
 
     }
     
-    func calcAvg() -> Int {
+   @discardableResult func calcAvg() -> Int {
         let summedArr = valuesArray.reduce(0, {$0 + $1})
         let arrayCount = valuesArray.count
         if valuesArray.count == 0 {
