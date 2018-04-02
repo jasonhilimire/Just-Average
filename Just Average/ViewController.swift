@@ -43,11 +43,11 @@ class ViewController: UIViewController {
         } else {
         print(enteredValue!)
         valuesArray.append(Int(enteredValue!)!)
-        textBox.text = ""
+        textBoxDefault()
         print(valuesArray)
         calcAvg()
-        avgLabel.text = "Average: \(calcAvg())"
-        valuesLabel.text = "\(valuesArray)"
+        avgLabelText()
+        valuesLabelActive()
         }
     }
     
@@ -63,8 +63,8 @@ class ViewController: UIViewController {
         if valuesArray.count >= 1 {
         valuesArray.removeLast()
         calcAvg()
-        avgLabel.text = "Average: \(calcAvg())"
-            valuesLabel.text = "\(valuesArray)"
+        avgLabelText()
+        valuesLabelActive()
         } else {
             // TODO: FIX the [] when removelast is pressed and array == 0
         }
@@ -91,9 +91,25 @@ class ViewController: UIViewController {
     }
     
     func resetAll() {
-        textBox.text = ""
+        textBoxDefault()
+        valuesLabelDefault()
+        avgLabelText()
+    }
+    
+    func avgLabelText() {
+        avgLabel.text = "Average: \(calcAvg())"
+    }
+    
+    func valuesLabelActive() {
+        valuesLabel.text = "Total Values: \(valuesArray.count) | Values: \(valuesArray)"
+    }
+    
+    func valuesLabelDefault() {
         valuesLabel.text = "There be no values here... enter some shit"
-        avgLabel.text = "Average: 0"
+    }
+    
+    func textBoxDefault() {
+        textBox.text = ""
     }
 
 
