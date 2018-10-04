@@ -16,8 +16,8 @@ extension UITextField{
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
         doneToolbar.barStyle = UIBarStyle.default
         
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: myAction)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: myAction)
         
         var items = [UIBarButtonItem]()
         items.append(flexSpace)
@@ -60,13 +60,17 @@ class ViewController: UIViewController {
     @IBOutlet var textBox: UITextField!
     
     @IBAction func removeLast(_ sender: UIButton) {
-        if valuesArray.count >= 1 {
-        valuesArray.removeLast()
-        calcAvg()
-        avgLabelText()
-        valuesLabelActive()
+        
+        
+        if valuesArray.count >= 2 {
+            valuesArray.removeLast()
+            calcAvg()
+            avgLabelText()
+            valuesLabelActive()
         } else {
-            // TODO: FIX the [] when removelast is pressed and array == 0
+
+            valuesArray.removeAll()
+            resetAll()
         }
     }
     
@@ -101,7 +105,7 @@ class ViewController: UIViewController {
     }
     
     func valuesLabelActive() {
-        valuesLabel.text = "Total Values: \(valuesArray.count) | Values: \(valuesArray)"
+        valuesLabel.text = "Total Values: \(valuesArray.count) \nValues: \(valuesArray)"
     }
     
     func valuesLabelDefault() {
